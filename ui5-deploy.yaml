@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: br.com.vtal.vtaliza.zapplogaplicationlogs
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: DEST_S4_ODATA_BAS
+          url: http://vhbrcds4ci.sap.vtal.com:44300
+        app:
+          name: BSP_LOG_APP
+          package: $tmp
+          transport: ""
+        exclude:
+          - /test/
